@@ -19,7 +19,6 @@ public class playGameMain {
 				break;
 			case 2:
 				game.LoadGame();
-				System.out.println("Game Start");
 				break;
 			case 3:
 				game.showRanking();
