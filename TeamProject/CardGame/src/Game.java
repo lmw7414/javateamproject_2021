@@ -280,17 +280,19 @@ public class Game {
 
 	public void LoadGame() {
 		int i, j = 0;
+
 		String name2;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("************************************************");
-		System.out.println("***              Search Name                 ***");
-		System.out.println("************************************************");
+		Scanner scan = new Scanner(System.in);
+		System.out.println("***********************************************");
+		System.out.println("***              Search Name                ***");
+		System.out.println("***********************************************");
 		System.out.print("SEARCH NAME : ");
-		name2 = scanner.nextLine();
+		name2 = scan.nextLine();
 		for (i = 0; i <= userCnt; i++) {
 			if (name2.equals(user[i].getPersonName())) {
 				j = 1;
 				System.out.println("Your name founded");
+				user[userCnt++].setPerson(name2);
 				break;
 			}
 		}
@@ -300,4 +302,5 @@ public class Game {
 		}
 		startGamelevel1();
 	}
+}
 }
