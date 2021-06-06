@@ -1,6 +1,7 @@
 import java.awt.FlowLayout;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JList;
@@ -34,8 +35,6 @@ public class MainMenu extends JFrame {
 						switch (menuJList.getSelectedIndex()) {
 						case 0 : 
 							new DisplayButton(4); // create ButtonFrame, fix : change to loop
-							
-							break;
 							
 						case 1 :
 							name = JOptionPane.showInputDialog("Enter Name"); // fix : only when user choose ok
