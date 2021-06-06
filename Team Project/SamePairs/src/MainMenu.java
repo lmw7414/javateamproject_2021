@@ -33,12 +33,10 @@ public class MainMenu extends JFrame {
 					if(!event.getValueIsAdjusting()) { // not to display twice
 						switch (menuJList.getSelectedIndex()) {
 						case 0 : 
-							DisplayButton tutorial = new DisplayButton(4); // create ButtonFrame, fix : change to loop
-							tutorial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-							tutorial.setSize(1400, 800); // set frame size
-							tutorial.setVisible(true); // display frame
-							user[userCnt].setPersonScore(tutorial.getScore());
+							new DisplayButton(4); // create ButtonFrame, fix : change to loop
+							
 							break;
+							
 						case 1 :
 							name = JOptionPane.showInputDialog("Enter Name"); // fix : only when user choose ok
 							if(name == null)
@@ -47,10 +45,11 @@ public class MainMenu extends JFrame {
 							user[userCnt].setPerson(name);
 							for(int i = 1 ; i <= 3 ; i++) {
 								DisplayButton newGame = new DisplayButton((i + 1)*10); // create ButtonFrame, fix : change to loop
-								newGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-								newGame.setSize(1400, 800); // set frame size
-								newGame.setVisible(true); // display frame
-								user[userCnt].setPersonScore(newGame.getScore());
+																user[userCnt].setPersonScore(newGame.getScore());
+								if(i != 3 && newGame.getMatchedCard() == (i + 1)*5)
+									continue;
+								else if (i == 3 && newGame.getMatchedCard() == 20)
+									return;
 							}
 							break;
 							
@@ -67,9 +66,6 @@ public class MainMenu extends JFrame {
 							if (j == 1) {
 								for (i = lastLevel; i <= 3; i++) {
 									DisplayButton loadedGame = new DisplayButton((i + 1)*10);
-									loadedGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-									loadedGame.setSize(1400, 800); // set frame size
-									loadedGame.setVisible(true); // display frame
 									user[userNum].setPersonScore(loadedGame.getScore());
 								}
 							}
