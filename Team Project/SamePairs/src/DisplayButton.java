@@ -28,7 +28,7 @@ public class DisplayButton extends JFrame
       size = n;
       setLayout( new FlowLayout() ); // set frame layout
       
-      // initionalize array picture 
+      // initialize array picture 
       picture[0] = new ImageIcon( getClass().getResource( "backp.png" ) );
       picture[1] = new ImageIcon( getClass().getResource( "apple.png" ) );
       picture[2] = new ImageIcon( getClass().getResource( "kiwi.png" ) );
@@ -63,17 +63,17 @@ public class DisplayButton extends JFrame
          row = 5;
          col = 4;
          horizon = row * 110 + 45;
-         height = col * 130 + 75;
+         height = col * 130 + 65;
       } else if (size == 30) {
          row = 6;
          col = 5;
          horizon = row * 110 + 45;
-         height = col * 120 + 75;
+         height = col * 120 + 100;
       } else {
          row = 8;
          col = 5;
          horizon = row * 110 + 45;
-         height = col * 120 + 75;
+         height = col * 120 + 100;
       }
       frame.setLayout(null);
       frame.setSize(horizon, height);
@@ -112,7 +112,6 @@ public class DisplayButton extends JFrame
       /*JButton exitButton = new JButton("EXIT");
       exitButton.addActionListener( 
     		  new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					return;
@@ -164,6 +163,8 @@ public class DisplayButton extends JFrame
     				  score += 10;
     				  cards[firstCard].setCardState(Status.correct);
     				  cards[secondCard].setCardState(Status.correct);
+    				  fancyJButton[firstCard].setVisible(false);
+    				  fancyJButton[secondCard].setVisible(false);
     				  matchedCard++;
     			  }
     			  else {
