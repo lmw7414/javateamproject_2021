@@ -12,7 +12,7 @@ import javax.swing.WindowConstants;
 
 
 public class Level extends JPanel{
-	public JmainTest win;
+	public GameFrame win;
 	public JButton[] fancyJButton = new JButton[41];
 	public Icon[] picture = new Icon[21];
 	public Card[] cards = new Card[41];
@@ -28,8 +28,9 @@ public class Level extends JPanel{
 	public int size;
 	public boolean matched = true;
 	public String nextLevel;
+	Voice voice;
 
-	public Level(JmainTest win, int n) {
+	public Level(GameFrame win, int n) {
 		this.win = win;
 		size = n;
 		
@@ -151,6 +152,9 @@ public class Level extends JPanel{
 					cards[secondCard].setCardState(Status.correct);
 					fancyJButton[firstCard].setVisible(false);
 					fancyJButton[secondCard].setVisible(false);
+					voice = new Voice(cards[firstCard].getCardWord());
+					voice = new Voice(cards[firstCard].getCardWord());
+					
 					matchedCard++;
 				} else {
 					score -= 1;
@@ -181,7 +185,7 @@ public class Level extends JPanel{
 				else if (size == 30)
 					nextLevel = "Level3";
 				else
-					nextLevel = "Menu";
+					nextLevel = "end";
 				win.change(nextLevel, size);
 			}
 		}

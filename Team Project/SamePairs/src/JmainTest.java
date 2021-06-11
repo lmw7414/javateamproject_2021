@@ -15,12 +15,6 @@ public class JmainTest extends JFrame {
 			getContentPane().add(menu);
 		else if (panelName.equals("Tutorial"))
 			getContentPane().add(tutorial);
-		else if (panelName.equals("Level1"))
-			getContentPane().add(level1);
-		else if (panelName.equals("Level2"))
-			getContentPane().add(level2);
-		else
-			getContentPane().add(level3);
 		
 		revalidate();
 		repaint();
