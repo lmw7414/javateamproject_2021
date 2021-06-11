@@ -13,6 +13,7 @@ public class Tutorial extends JPanel {
 	public JLabel nameLabel = new JLabel();
 	public int flippedCard = -1, firstCard = 0, secondCard = 0, score = 0, matchedCard = 0, size = 4;
 	public boolean matched = true;
+	Voice voice;
 
 	public Tutorial(JmainTest win) {
 		this.win = win;
@@ -99,6 +100,8 @@ public class Tutorial extends JPanel {
 					cards[secondCard].setCardState(Status.correct);
 					fancyJButton[firstCard].setVisible(false);
 					fancyJButton[secondCard].setVisible(false);
+					voice = new Voice(cards[firstCard].getCardWord());
+					voice = new Voice(cards[firstCard].getCardWord());
 					matchedCard++;
 				} else {
 					score -= 1;

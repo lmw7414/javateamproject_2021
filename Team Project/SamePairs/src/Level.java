@@ -1,3 +1,4 @@
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.SecureRandom;
@@ -10,9 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-
-public class Level extends JPanel{
-	public GameFrame win;
+public class Level extends JFrame{
 	public JButton[] fancyJButton = new JButton[41];
 	public Icon[] picture = new Icon[21];
 	public Card[] cards = new Card[41];
@@ -28,17 +27,13 @@ public class Level extends JPanel{
 	public int size;
 	public boolean matched = true;
 	public String nextLevel;
+	JFrame frame = new JFrame("Game");
 	Voice voice;
 
-	public Level(GameFrame win, int n) {
-		this.win = win;
+	public Level(int n, Person p) {
 		size = n;
-		
-		setLayout(null);
 
 		init();
-
-		ButtonHandler handler = new ButtonHandler();
 
 		int[] pic = new int[size/2 + 1];
 		int x = 15, y = 15, row, col;
@@ -57,9 +52,13 @@ public class Level extends JPanel{
 		}
 		horizon = row * 110 + 50;
 		height = col * 120 + 200;
-		nameLabel.setText("Name : " + win.getName());
+		nameLabel.setText("Name : " + p.getPersonName());
 		nameLabel.setBounds(50, height - 150, 200, 100);
-		add(nameLabel);
+		frame.add(nameLabel);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setSize(horizon, height); // set frame size
+        frame.setVisible(true); // display frame
 
 		for (int i = 1; i <= size; i++) {
 			SecureRandom ri = new SecureRandom(); // random icon
@@ -78,7 +77,7 @@ public class Level extends JPanel{
 			fancyJButton[i] = new JButton(picture[0]);// set image
 			fancyJButton[i].setBounds(x, y, 110, 130);
 
-			add(fancyJButton[i]);
+			frame.add(fancyJButton[i]);
 			if (i % row == 0) {	//set card location
 				y += 130;
 				x = 15;
@@ -86,11 +85,87 @@ public class Level extends JPanel{
 				x += 110;
 
 			cards[i] = new Card(Word[value], Status.back, picture[value]);
-			fancyJButton[i].addActionListener(handler);
+			fancyJButton[i].addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent event) { // fix : change to other class
+					if (flippedCard == -1) { // first flip
+						for (int i = 1; i <= size; i++) {
+							if (event.getSource() == fancyJButton[i]) {
+								if (cards[i].getCardState() != Status.front) {
+									fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
+									cards[i].setCardState(Status.front);
+									flippedCard = 1;
+									firstCard = i;
+								}
+							}
+						}
+					} else if ((flippedCard == 0 || flippedCard == 1)) { // when one card is flipped
+						for (int i = 1; i <= size; i++) {
+							if (event.getSource() == fancyJButton[i]) {
+								if (cards[i].getCardState() != Status.front) {
+									fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
+									cards[i].setCardState(Status.front);
+									flippedCard = 2;
+									secondCard = i;
+								}
+							}
+						}
+						if (cards[firstCard].getCardPicture() == cards[secondCard].getCardPicture()
+								&& firstCard != secondCard && cards[secondCard] != null) { // if matched
+							Correct correct = new Correct(cards[firstCard].getCardWord(),cards[firstCard].getCardPicture());
+							correct.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+							correct.setSize(260,260);
+							correct.setVisible(true);
+							matched = true;
+							p.setPersonScore(10);
+							cards[firstCard].setCardState(Status.correct);
+							cards[secondCard].setCardState(Status.correct);
+							fancyJButton[firstCard].setVisible(false);
+							fancyJButton[secondCard].setVisible(false);
+							voice = new Voice(cards[firstCard].getCardWord());
+							voice = new Voice(cards[firstCard].getCardWord());
+							
+							matchedCard++;
+						} else {
+							p.setPersonScore(-1);
+							matched = false;
+						}
+					} else // when two cards are flipped
+						for (int i = 1; i <= size; i++) {
+							if (!matched) {
+								fancyJButton[firstCard].setIcon(picture[0]);
+								fancyJButton[secondCard].setIcon(picture[0]);
+								cards[firstCard].setCardState(Status.back);
+								cards[secondCard].setCardState(Status.back);
+								matched = true;
+							}
+							flippedCard = 0;
+							if (event.getSource() == fancyJButton[i]) {
+								if (cards[i].getCardState() != Status.front) {
+									fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
+									cards[i].setCardState(Status.front);
+									flippedCard++;
+									firstCard = i;
+								}
+							}
+						}
+					if(matchedCard == size / 2) {
+						frame.dispose();
+						p.setPersonScore(score);
+						if (size == 20)
+							new Level(30, p);
+						else if (size == 30)
+							new Level(40, p);
+						else
+							frame.dispose();
+					}
+				}
+			}
+			);
 		}
 	}
 	
-	void init() {
+	public void init() {
 		// initialize array picture
 		picture[0] = new ImageIcon(getClass().getResource("backp.png"));
 		picture[1] = new ImageIcon(getClass().getResource("apple.png"));
@@ -114,83 +189,4 @@ public class Level extends JPanel{
 		picture[19] = new ImageIcon(getClass().getResource("mango.png"));
 		picture[20] = new ImageIcon(getClass().getResource("cucumber.png"));
 	}
-	
-	public class ButtonHandler implements ActionListener {
-
-		public void actionPerformed(ActionEvent event) { // fix : change to other class
-			if (flippedCard == -1) { // first flip
-				for (int i = 1; i <= size; i++) {
-					if (event.getSource() == fancyJButton[i]) {
-						if (cards[i].getCardState() != Status.front) {
-							fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
-							cards[i].setCardState(Status.front);
-							flippedCard = 1;
-							firstCard = i;
-						}
-					}
-				}
-			} else if ((flippedCard == 0 || flippedCard == 1)) { // when one card is flipped
-				for (int i = 1; i <= size; i++) {
-					if (event.getSource() == fancyJButton[i]) {
-						if (cards[i].getCardState() != Status.front) {
-							fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
-							cards[i].setCardState(Status.front);
-							flippedCard = 2;
-							secondCard = i;
-						}
-					}
-				}
-				if (cards[firstCard].getCardPicture() == cards[secondCard].getCardPicture()
-						&& firstCard != secondCard && cards[secondCard] != null) { // if matched
-					//Correct correct = new Correct(cards[firstCard].getCardWord(),cards[firstCard].getCardPicture());
-					//correct.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-					//correct.setSize(260,260);
-					//correct.setVisible(true);
-					matched = true;
-					score += 10;
-					cards[firstCard].setCardState(Status.correct);
-					cards[secondCard].setCardState(Status.correct);
-					fancyJButton[firstCard].setVisible(false);
-					fancyJButton[secondCard].setVisible(false);
-					//voice = new Voice(cards[firstCard].getCardWord());
-					//voice = new Voice(cards[firstCard].getCardWord());
-					
-					matchedCard++;
-				} else {
-					score -= 1;
-					matched = false;
-				}
-			} else // when two cards are flipped
-				for (int i = 1; i <= size; i++) {
-					if (!matched) {
-						fancyJButton[firstCard].setIcon(picture[0]);
-						fancyJButton[secondCard].setIcon(picture[0]);
-						cards[firstCard].setCardState(Status.back);
-						cards[secondCard].setCardState(Status.back);
-						matched = true;
-					}
-					flippedCard = 0;
-					if (event.getSource() == fancyJButton[i]) {
-						if (cards[i].getCardState() != Status.front) {
-							fancyJButton[i].setIcon(cards[i].getCardPicture()); // flip card to frontward
-							cards[i].setCardState(Status.front);
-							flippedCard++;
-							firstCard = i;
-						}
-					}
-				}
-			if(matchedCard == size / 2) {
-				if (size == 20)
-					nextLevel = "Level2";
-				else if (size == 30)
-					nextLevel = "Level3";
-				else
-					nextLevel = "end";
-				win.change(nextLevel, size);
-			}
-		}
-		// JOptionPane.showMessageDialog( ButtonFrame.this, String.format(
-		// "You pressed: %s", event.getActionCommand() ) );
-		// end method actionPerformed	
-	} // end private inner class ButtonHandler
 }

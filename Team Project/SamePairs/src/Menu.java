@@ -38,23 +38,10 @@ public class Menu extends JPanel{
 						name = JOptionPane.showInputDialog("Enter Name"); // fix : only when user choose ok
 						if (name == null)
 							return;
-						GameFrame gameFrame = new GameFrame();
-						gameFrame.level1 = new Level(gameFrame, 20);
-						gameFrame.level2 = new Level(gameFrame, 30);
-						gameFrame.level3 = new Level(gameFrame, 40);
-						gameFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-						gameFrame.setSize(800,1200);
-						gameFrame.setVisible(true);
-						//gameFrame.add(window.menu);
-						window.change("Menu", 0);
-
 						user[++userCnt] = new Person();
 						user[userCnt].setPerson(name);
-						/*Stopwatch stopwatch = new Stopwatch(newGame);
-						stopwatch.timer.start();*/
+						Level newGame = new Level(20, user[userCnt]);
 						
-						gameFrame.change("Level1", 20);
-						//win.change("Menu");
 						break;
 
 					/*case 2:
@@ -76,6 +63,11 @@ public class Menu extends JPanel{
 						}
 					case 3:*/
 					case 4:
+						System.out.print(user[userCnt - 1].getPersonScore());
+						System.out.print(user[userCnt].getPersonScore());
+						System.out.print(user[userCnt - 1].getPersonName());
+						System.out.print(user[userCnt].getPersonName());
+						
 						System.exit(0);
 
 					}

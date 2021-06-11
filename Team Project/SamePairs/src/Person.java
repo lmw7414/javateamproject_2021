@@ -2,24 +2,21 @@ public class Person {
    private String name;
    private int score;
    private int second;
-   private int highLevel;
 
    public Person() {
       this.name = null;
       this.score = 0;
       this.second = 0;
-      this.highLevel = 0;
    }
 
    void setPerson(String name) {
       this.name = name;
       this.score = 0;
       this.second = 0;
-      this.highLevel = 0;
    }
    
    void setPersonScore(int score) {
-      this.score = score;
+      this.score += score;
    }
    
    void setPersonSecond(int second) {
@@ -30,7 +27,6 @@ public class Person {
       this.name = name;
       this.score = score;
       this.second = second;
-      this.highLevel = highLevel;
    }
    
    public String getPersonName() {
@@ -43,10 +39,6 @@ public class Person {
 
    public int getPersonSecond() {
       return this.second;
-   }
-
-   public int getPersonHighLevel() {
-      return this.highLevel;
    }
 
 }
