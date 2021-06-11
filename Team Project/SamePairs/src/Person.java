@@ -1,7 +1,7 @@
 public class Person {
    private String name;
    private int score;
-   private int second;
+   private long second;
 
    public Person() {
       this.name = null;
@@ -19,7 +19,7 @@ public class Person {
       this.score += score;
    }
    
-   void setPersonSecond(int second) {
+   void setPersonSecond(long second) {
 	   this.second = second;
    }
 
@@ -37,7 +37,7 @@ public class Person {
       return this.score;
    }
 
-   public int getPersonSecond() {
+   public long getPersonSecond() {
       return this.second;
    }
 

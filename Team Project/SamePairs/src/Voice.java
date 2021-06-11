@@ -15,7 +15,7 @@ public class Voice {
 
 	    try {
 	        voice.setRate(190);//Setting the rate of the voice
-	        voice.setPitch(150);//Setting the Pitch of the voice
+	        voice.setPitch(100);//Setting the Pitch of the voice
 	        voice.setVolume(3);//Setting the volume of the voice
 	        SpeakText(words);// Calling speak() method
 
