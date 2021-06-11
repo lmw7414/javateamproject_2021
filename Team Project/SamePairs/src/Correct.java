@@ -1,3 +1,4 @@
+
 import java.awt.FlowLayout;
 import javax.swing.*;
 
@@ -13,8 +14,6 @@ public class Correct extends JFrame{
 		label.setIcon(picture);
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setVerticalTextPosition(SwingConstants.BOTTOM);
-		voice = new Voice(cardName);
 		add(label);
-		
 	}
 }

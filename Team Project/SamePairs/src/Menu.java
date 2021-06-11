@@ -35,18 +35,19 @@ public class Menu extends JPanel{
 						window.change("Tutorial", 0); // create ButtonFrame, fix : change to loop
 						return;
 					case 1:
+						name = JOptionPane.showInputDialog("Enter Name"); // fix : only when user choose ok
+						if (name == null)
+							return;
 						GameFrame gameFrame = new GameFrame();
 						gameFrame.level1 = new Level(gameFrame, 20);
 						gameFrame.level2 = new Level(gameFrame, 30);
 						gameFrame.level3 = new Level(gameFrame, 40);
 						gameFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-						gameFrame.setSize(800,900);
+						gameFrame.setSize(800,1200);
 						gameFrame.setVisible(true);
-						gameFrame.add(window.menu);
-						
-						name = JOptionPane.showInputDialog("Enter Name"); // fix : only when user choose ok
-						if (name == null)
-							return;
+						//gameFrame.add(window.menu);
+						window.change("Menu", 0);
+
 						user[++userCnt] = new Person();
 						user[userCnt].setPerson(name);
 						/*Stopwatch stopwatch = new Stopwatch(newGame);
@@ -73,8 +74,9 @@ public class Menu extends JPanel{
 								user[userNum].setPersonScore(loadedGame.getScore());
 							}
 						}
-					case 3:
-					case 4:*/
+					case 3:*/
+					case 4:
+						System.exit(0);
 
 					}
 				}

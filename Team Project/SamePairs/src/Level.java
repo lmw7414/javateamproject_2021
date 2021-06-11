@@ -142,18 +142,18 @@ public class Level extends JPanel{
 				}
 				if (cards[firstCard].getCardPicture() == cards[secondCard].getCardPicture()
 						&& firstCard != secondCard && cards[secondCard] != null) { // if matched
-					Correct correct = new Correct(cards[firstCard].getCardWord(),cards[firstCard].getCardPicture());
-					correct.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-					correct.setSize(260,260);
-					correct.setVisible(true);
+					//Correct correct = new Correct(cards[firstCard].getCardWord(),cards[firstCard].getCardPicture());
+					//correct.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+					//correct.setSize(260,260);
+					//correct.setVisible(true);
 					matched = true;
 					score += 10;
 					cards[firstCard].setCardState(Status.correct);
 					cards[secondCard].setCardState(Status.correct);
 					fancyJButton[firstCard].setVisible(false);
 					fancyJButton[secondCard].setVisible(false);
-					voice = new Voice(cards[firstCard].getCardWord());
-					voice = new Voice(cards[firstCard].getCardWord());
+					//voice = new Voice(cards[firstCard].getCardWord());
+					//voice = new Voice(cards[firstCard].getCardWord());
 					
 					matchedCard++;
 				} else {

@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -132,4 +131,3 @@ public class Tutorial extends JPanel {
 		// end method actionPerformed
 	} // end private inner class ButtonHandler
 }
-

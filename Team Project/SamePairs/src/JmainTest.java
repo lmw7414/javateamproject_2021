@@ -19,12 +19,4 @@ public class JmainTest extends JFrame {
 		revalidate();
 		repaint();
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String nowName() {
-		return name;
-	}
 }

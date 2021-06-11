@@ -1,14 +1,3 @@
-/*import java.awt.FlowLayout;
-import java.awt.Color;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.ListSelectionModel;*/
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -39,7 +28,6 @@ public class playGameMain extends JFrame {
 		/*menuJList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
-
 				if (!event.getValueIsAdjusting()) { // not to display twice
 					switch (menuJList.getSelectedIndex()) {
 					case 0:
@@ -51,20 +39,17 @@ public class playGameMain extends JFrame {
 							return;
 						user[++userCnt] = new Person();
 						user[userCnt].setPerson(name);
-
 						gameCount = 0;
 						for (int i = 1; i <= 3; i++) {
 							// DisplayButton newGame = new DisplayButton((i + 1) * 10, name); // create
 							// ButtonFrame
 							// Stopwatch stopwatch = new Stopwatch(newGame);
-
 							/*
 							 * if (i != 3 && newGame.getMatchedCard() == (i + 1) * 5) continue; else if (i
 							 * == 3 && newGame.getMatchedCard() == 20) return;
 							 */
 						//}
 						/*break;
-
 					case 2:
 						String name2 = JOptionPane.showInputDialog("Enter Name");
 						int i = 1, j = 0, lastLevel = 0, userNum = 0;
@@ -83,14 +68,11 @@ public class playGameMain extends JFrame {
 							}
 						}
 					case 3:
-
 					case 4:
-
 					}
 				}
 			}
 		}
-
 		);*/
 
 	}
@@ -102,6 +84,3 @@ public class playGameMain extends JFrame {
 			startGame
 		}
 	}*/
-
-
-
