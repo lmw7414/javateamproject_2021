@@ -25,23 +25,27 @@ public class ShowRank {
 		for (int i = 1; i <= userCnt; i++) {
 			for (int j = 1; j <= userCnt - i; j++)
 				if (user[j].getPersonScore() < user[j + 1].getPersonScore()) {
-					temp.clonePerson(user[j].getPersonName(), user[j].getPersonScore(), user[j].getPersonSecond());
+					temp.clonePerson(user[j].getPersonName(), user[j].getPersonScore(), user[j].getPersonSecond(), user[j].getPersonComplete());
 					user[j].clonePerson(user[j + 1].getPersonName(), user[j + 1].getPersonScore(),
-							user[j + 1].getPersonSecond());
-					user[j + 1].clonePerson(temp.getPersonName(), temp.getPersonScore(), temp.getPersonSecond());
+							user[j + 1].getPersonSecond(), user[j].getPersonComplete());
+					user[j + 1].clonePerson(temp.getPersonName(), temp.getPersonScore(), temp.getPersonSecond(), user[j].getPersonComplete());
 				}
 		}
 	}
 
 	public void showRanking(Person[] user, int userCnt) {
-		int j;
-		if (userCnt > 10)
-			j = 10;
-		else
-			j = userCnt;
-
-		for (int i = 1; i <= j; i++) {
-			top10[i] = user[i];
+		int j = 0;
+		
+		for (int i = 1; i <= userCnt; i++) {
+			if (j > 10)
+				break;
+			
+			if (user[i].getPersonComplete()) {
+				j++;
+				top10[j] = user[i];
+			}
+			else
+				continue;
 		}
 
 		mat[0][1] = "Rank";

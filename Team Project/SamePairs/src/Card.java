@@ -1,4 +1,3 @@
-
 import javax.swing.Icon;
 
 public class Card {

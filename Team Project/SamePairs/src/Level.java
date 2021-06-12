@@ -1,4 +1,3 @@
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +26,7 @@ public class Level extends JFrame {
 	public JLabel scoreLabel = new JLabel();
 	public int flippedCard = -1, firstCard = 0, secondCard = 0, matchedCard = 0;
 	public int score = 0, size, LEV = 1;
-	static long afterTime, secDiffTime = 0, beforeTime = System.currentTimeMillis();
+	static long afterTime, secDiffTime = 0, beforeTime;
 	public boolean matched = true;
 	public String nextLevel;
 	private Dimension frameSize, screenSize;
@@ -35,6 +34,7 @@ public class Level extends JFrame {
 	Voice voice;
 
 	public Level(int n, Person p) {
+		beforeTime = System.currentTimeMillis();
 		size = n;
 		init();
 		int[] pic = new int[size / 2 + 1];
@@ -186,8 +186,8 @@ public class Level extends JFrame {
 						else if (size == 30)
 							new Level(40, p);
 						else {
-							
 							frame.dispose();
+							p.setPersonComplete(true);
 						}
 					}
 				}
