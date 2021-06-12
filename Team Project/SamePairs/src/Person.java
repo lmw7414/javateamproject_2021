@@ -20,10 +20,10 @@ public class Person {
    }
    
    void setPersonSecond(long second) {
-	   this.second = second;
+	   this.second += second;
    }
 
-   void clonePerson(String name, int score, int second, int highLevel) {
+   void clonePerson(String name, int score, long second) {
       this.name = name;
       this.score = score;
       this.second = second;

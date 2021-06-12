@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.SecureRandom;
@@ -31,10 +30,6 @@ public class Tutorial extends JPanel {
 		
 		horizon = row * 110 + 50;
 		height = col * 120 + 200;
-		nameLabel.setText("Name : " + win.getName());
-		nameLabel.setBounds(50, height - 150, 200, 100);
-		add(nameLabel);
-
 		for (int i = 1; i <= size; i++) {
 			SecureRandom ri = new SecureRandom(); // random icon
 			int value = 0;

@@ -1,4 +1,6 @@
+
 import java.awt.FlowLayout;
+import java.awt.Font;
 import javax.swing.*;
 
 public class Correct extends JFrame{
@@ -10,12 +12,10 @@ public class Correct extends JFrame{
 		setLayout(new FlowLayout());
 		label = new JLabel();
 		label.setText(cardName);
+		label.setFont(new Font("Verdana", Font.PLAIN, 20));
 		label.setIcon(picture);
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setVerticalTextPosition(SwingConstants.BOTTOM);
 		add(label);
-		//voice = new Voice(cardName);
-		//voice = new Voice(cardName);
-
 	}
 }

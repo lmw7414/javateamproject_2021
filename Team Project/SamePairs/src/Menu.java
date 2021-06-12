@@ -9,8 +9,7 @@ import javax.swing.event.ListSelectionListener;
 public class Menu extends JPanel{
 	private JList<String> menuJList;
 	private JmainTest window;
-	private static final String[] menu = { "Tutorial", "New Game", 
-			"Load Game", "Show Ranking", "Exit Game" };
+	private static final String[] menu = { "Tutorial", "New Game", "Show Ranking", "Exit Game" };
 	private int userCnt = 0;
 	private String name;
 	private Person[] user = new Person[100];
@@ -20,8 +19,9 @@ public class Menu extends JPanel{
 		
 		setLayout(new FlowLayout());
 		menuJList = new JList<String>(menu);
-		menuJList.setVisibleRowCount(5);
+		menuJList.setVisibleRowCount(4);
 		menuJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		menuJList.setFont(new Font("Verdana", Font.PLAIN, 15));
 		add(menuJList);		//new JScrollPane(menuJList));
 		
 		menuJList.addListSelectionListener(new ListSelectionListener() {
@@ -44,30 +44,10 @@ public class Menu extends JPanel{
 						
 						break;
 
-					/*case 2:
-						String name2 = JOptionPane.showInputDialog("Enter Name");
-						int i = 1, j = 0, lastLevel = 0, userNum = 0;
-						for (; i <= userCnt; i++) {
-							if (name2.equals(user[i].getPersonName())) {
-								j = 1;
-								userNum = i;
-								lastLevel = user[i].getPersonHighLevel();
-								break;
-							}
-						}
-						if (j == 1) {
-							for (i = lastLevel; i <= 3; i++) {
-								DisplayButton loadedGame = new DisplayButton((i + 1) * 10, name2);
-								user[userNum].setPersonScore(loadedGame.getScore());
-							}
-						}
-					case 3:*/
-					case 4:
-						System.out.print(user[userCnt - 1].getPersonScore());
-						System.out.print(user[userCnt].getPersonScore());
-						System.out.print(user[userCnt - 1].getPersonName());
-						System.out.print(user[userCnt].getPersonName());
-						
+					case 2:
+						new ShowRank(user, userCnt);
+						return;
+					case 3:
 						System.exit(0);
 
 					}
@@ -78,5 +58,4 @@ public class Menu extends JPanel{
 		);
 
 	}
-	
 }
