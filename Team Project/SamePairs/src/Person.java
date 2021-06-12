@@ -1,36 +1,37 @@
 public class Person {
    private String name;
    private int score;
-   private int second;
-   private int highLevel;
+   private long second;
+   private boolean complete;
 
    public Person() {
       this.name = null;
       this.score = 0;
       this.second = 0;
-      this.highLevel = 0;
+      this.complete = false;
    }
 
    void setPerson(String name) {
       this.name = name;
-      this.score = 0;
-      this.second = 0;
-      this.highLevel = 0;
    }
    
    void setPersonScore(int score) {
-      this.score = score;
+      this.score += score;
    }
    
-   void setPersonSecond(int second) {
-	   this.second = second;
+   void setPersonSecond(long second) {
+	   this.second += second;
    }
 
-   void clonePerson(String name, int score, int second, int highLevel) {
+   void setPersonComplete(boolean complete) {
+	   this.complete = complete;
+   }
+   
+   void clonePerson(String name, int score, long second, boolean complete) {
       this.name = name;
       this.score = score;
       this.second = second;
-      this.highLevel = highLevel;
+      this.complete = complete;
    }
    
    public String getPersonName() {
@@ -41,12 +42,12 @@ public class Person {
       return this.score;
    }
 
-   public int getPersonSecond() {
+   public long getPersonSecond() {
       return this.second;
    }
-
-   public int getPersonHighLevel() {
-      return this.highLevel;
+   
+   public boolean getPersonComplete() {
+	   return this.complete;
    }
 
 }
